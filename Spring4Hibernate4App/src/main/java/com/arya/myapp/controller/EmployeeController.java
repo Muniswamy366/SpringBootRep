@@ -37,7 +37,6 @@ public class EmployeeController {
 		logger.info("findAllEmployees() -- START");
 		HttpHeaders responseHeaders = new HttpHeaders();
 		logger.info("findAllEmployees() -- END");
-		logger.debug("findAllEmployees() -- END " + employeeService.findAllEmployees());
 		return new ResponseEntity<List<Employee>>(employeeService.findAllEmployees(), responseHeaders, HttpStatus.OK);
 	}
 
