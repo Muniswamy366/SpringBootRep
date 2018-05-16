@@ -36,6 +36,7 @@ ADD . /usr/local/docker-git-hello-world
 # AFTER YOU HAVE MOVED ALL THE FILES GO AHEAD CD into the directory and run mvn assembly.
 # Maven assembly will package the project into a JAR FILE which can be executed
 RUN cd /usr/local/docker-git-hello-world
-RUN mvn assembly:assembly
+RUN mvn clean
+RUN mvn package
 EXPOSE 8086
 CMD ["java", "-jar", "/usr/local/docker-git-hello-world/target/users-mysql.jar"]
