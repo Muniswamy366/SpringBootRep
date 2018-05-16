@@ -28,7 +28,7 @@ public class SpringDataJpaHibernateExampleApplicationITTests {
     public void contextLoads() throws Exception {
 
         MvcResult mvcResult = mockMvc.perform(
-                MockMvcRequestBuilders.get("/all/")
+                MockMvcRequestBuilders.get("/getAll/")
                         .accept(MediaType.APPLICATION_JSON)
         ).andReturn();
 
