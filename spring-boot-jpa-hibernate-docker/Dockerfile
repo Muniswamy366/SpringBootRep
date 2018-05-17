@@ -26,15 +26,13 @@ RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 boolean tru
 #INSTALL ALL the updates again and install MAVEN and JDK 8
 RUN apt-get update && apt-get install -y --allow-unauthenticated oracle-java8-installer maven
 
-# ADD a directory called docker-git-hello-world inside the UBUNTU IMAGE where you will be moving all of these files under this 
+# ADD a directory called spring-boot-jpa-hibernate-docker inside the UBUNTU IMAGE where you will be moving all of these files under this 
 # DIRECTORY to
 ADD . /usr/local/spring-boot-jpa-hibernate-docker
 
 # AFTER YOU HAVE MOVED ALL THE FILES GO AHEAD CD into the directory and run mvn assembly.
 # Maven assembly will package the project into a JAR FILE which can be executed
-RUN cd /usr/local/spring-boot-jpa-hibernate-docker
+RUN cd /usr/local/spring-boot-jpa-hibernate-docker && mvn clean package
 
-RUN mvn clean
-RUN mvn package
 EXPOSE 8086
 CMD ["java", "-jar", "/usr/local/spring-boot-jpa-hibernate-docker/target/users-mysql.jar"]
