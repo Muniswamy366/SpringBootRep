@@ -1,23 +1,29 @@
 # Spring Boot on Docker connecting to MySQL Docker container
 
-1. Use MySQL Image published by Docker Hub (https://hub.docker.com/_/mysql/)
-Command to run the mysql container
-`docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=password -d mysql:5.6`
+1. Pull MySql image from Docker Hub (https://hub.docker.com/_/mysql/)
+`docker pull mysql:5.7`
 
-2. In the Spring Boot Application, use the same container name of the mysql instance in the application.properties
-`spring.datasource.url = jdbc:mysql://mysql-standalone:3306/test`
+2. Create MySql container from docker image.
+`docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test -e MYSQL_USER=muni -e MYSQL_PASSWORD=root -d mysql:5.7`
 
-3. Create a `Dockerfile` for creating a docker image from the Spring Boot Application
-`FROM openjdk:8
-ADD target/users-mysql.jar users-mysql.jar
-EXPOSE 8086
-ENTRYPOINT ["java", "-jar", "users-mysql.jar"]`
+3. In the Spring Boot Application, use the same container name of the mysql instance in the application.properties
+`spring.datasource.url = jdbc:mysql://mysql-container:3306/test`
 
 4. Using the Dockerfile create the Docker image.
-From the directory of Dockerfile - `docker build . -t users-mysql`
+From the directory of Dockerfile - `docker build . -t spring-boot-jpa-hibernate-docker`
 
-5. Run the Docker image (users-mysql) created in #4.
-`docker build . -t users-mysql`
+5. Run the Docker image (spring-boot-jpa-hibernate-docker) created in #4.
+`docker run -p 8086:8086 --name spring-boot-jpa-hibernate-docker --link mysql-container:mysql -d spring-boot-jpa-hibernate-docker`
+
+# Pulling Image from Docker hub
+
+1. Follow above steps 1 to 3.
+
+2. Pull spring-boot-jpa-hibernate-docker project image from Docker Hub (https://hub.docker.com/r/muniswamy/springbootrep/)
+`docker pull muniswamy/springbootrep`
+
+3. Run the Docker image (spring-boot-jpa-hibernate-docker) created in #4.
+`docker run -p 8086:8086 --name spring-boot-jpa-hibernate-docker --link mysql-container:mysql -d muniswamy/springbootrep`
 
 ## Useful Docker commands
 - `docker images`

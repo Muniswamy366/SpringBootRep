@@ -35,4 +35,4 @@ ADD . /usr/local/spring-boot-jpa-hibernate-docker
 RUN cd /usr/local/spring-boot-jpa-hibernate-docker && mvn clean package
 
 EXPOSE 8086
-CMD ["java", "-jar", "/usr/local/spring-boot-jpa-hibernate-docker/target/users-mysql.jar"]
+CMD ["java", "-jar", "/usr/local/spring-boot-jpa-hibernate-docker/target/spring-boot-jpa-hibernate-docker.jar"]
