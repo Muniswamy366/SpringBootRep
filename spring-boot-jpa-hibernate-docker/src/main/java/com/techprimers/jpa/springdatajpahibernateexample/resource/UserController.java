@@ -31,7 +31,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public List<Users> deleteUser(@RequestBody Users users, @PathVariable("id") Integer id) {
+	public List<Users> deleteUser(@PathVariable("id") Integer id) {
 
 		usersRepository.delete(id);
 
