@@ -25,6 +25,14 @@ From the directory of Dockerfile - `docker build . -t spring-boot-jpa-hibernate-
 3. Run the Docker image (spring-boot-jpa-hibernate-docker) created in #4.
 `docker run -p 8086:8086 --name spring-boot-jpa-hibernate-docker --link mysql-container:mysql -d muniswamy/springbootrep`
 
+# Sample Request
+
+{
+"id":1,
+"name":"muni",
+"salary":200
+}
+
 ## Useful Docker commands
 - `docker images`
 - `docker container ls`
