@@ -1,5 +1,6 @@
 package com.techprimers.jpa.springdatajpahibernateexample;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
@@ -27,12 +28,16 @@ public class SpringDataJpaHibernateExampleApplicationITTests {
     @Test
     public void contextLoads() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(
+       mockMvc.perform(
                 MockMvcRequestBuilders.get("/getAll/")
                         .accept(MediaType.APPLICATION_JSON)
-        ).andReturn();
+        //).andReturn();
+        ).andExpect(MockMvcResultMatchers.status().isOk())
+       .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is("muni")))
+       .andExpect(MockMvcResultMatchers.jsonPath("$[0].salary", Matchers.is(100)))
+       .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
 
-        System.out.println(mvcResult.getResponse());
+        //System.out.println(mvcResult.getResponse());
 
     }
 
