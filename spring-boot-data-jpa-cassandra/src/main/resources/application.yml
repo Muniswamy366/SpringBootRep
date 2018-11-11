@@ -1,0 +1,11 @@
+server:
+  port: 2015
+  
+  
+spring:
+  data:
+    cassandra:
+      keyspace-name: javasampleapproach
+      port: 9042
+      contact-points: 
+      - 127.0.0.1
