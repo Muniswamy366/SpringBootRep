@@ -1,4 +1,4 @@
-package com.arya.kafka.config;
+/*package com.arya.kafka.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,4 +33,4 @@ public class KakfaConfiguration {
 		return new KafkaTemplate<>(producerFactory());
 	}
 
-}
+}*/
